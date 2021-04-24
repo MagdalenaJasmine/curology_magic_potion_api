@@ -15,7 +15,6 @@ class TransactionsController < ApplicationController
         end
         render json: {"id": transaction.id}, status: 201
     rescue ActiveRecord::RecordInvalid => exception
-        puts "Oops. We tried to do an invalid operation!"
         render json: {"error": exception.message}, status: 422
     end
 
