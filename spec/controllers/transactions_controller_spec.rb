@@ -35,5 +35,19 @@ describe TransactionsController, :type => :request do
       subject
       expect(response).to have_http_status(:unprocessable_entity)
     end
+    context "when credit card number is malformed" do
+      let(:ccNum) {"potato"}
+      it 'fails' do
+        subject
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+    context "when expiration is malformed" do
+      let(:exp) {"potato"}
+      it 'fails' do
+        subject
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
