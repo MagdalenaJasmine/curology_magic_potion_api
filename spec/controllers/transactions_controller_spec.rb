@@ -49,5 +49,12 @@ describe TransactionsController, :type => :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
+    context "when quantity is greater than max quantity" do
+      let(:quantity) { Transaction::MAX_QUANTITY + 1 }
+      it 'fails' do
+        subject
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 end
